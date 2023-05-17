@@ -1,0 +1,46 @@
+
+/*Vacunas Utilizadas por Pais*/
+
+select distinct 
+country, 
+iso_code, 
+vaccines
+from [dbo].[country_vaccinations] c
+
+/* Total de Vacunas por Pais */
+
+select country, sum(cast(total_vaccinations as float)) as TotalVacunas
+from [dbo].[country_vaccinations]
+group by country
+
+
+/* TOP 20 Paises con mayor vacunacion de Personas*/
+
+
+select  TOP 20 country, sum(cast(people_vaccinated as float)) as PersonasVacunadas
+from [dbo].[country_vaccinations]
+group by country
+Order by PersonasVacunadas DESC
+
+
+
+/*TOP 50 total de personas completamente vacunadas por pais*/
+
+select top 50
+country,
+iso_code,
+sum(cast(people_fully_vaccinated as float)) as PersonasCompletamenteVacunadas  
+from [dbo].[country_vaccinations]
+group by country,iso_code
+order by PersonasCompletamenteVacunadas DESC
+
+
+/*Porcentaje de vacunacion completa por Pais*/
+
+select
+country,
+iso_code,
+avg(cast(people_fully_vaccinated as float)) as PorcentajedePersonasCompletamenteVacunadas  
+from [dbo].[country_vaccinations]
+group by country,iso_code
+order by PorcentajedePersonasCompletamenteVacunadas DESC

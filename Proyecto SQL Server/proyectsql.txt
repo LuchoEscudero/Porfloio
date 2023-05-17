@@ -1,0 +1,76 @@
+/*--Producto mas vendido ordenado por cantidad vendida--*/		
+
+SELECT P.ProductName, SUM(O.Quantity) AS TotalQuantity
+FROM dbo.[Order Details] O
+LEFT JOIN Products P ON O.ProductID = P.ProductID
+GROUP BY P.ProductName
+ORDER BY TotalQuantity DESC
+;
+
+/*--Creo tabla temporal para guardarme los 10 productos mas vendidos--*/
+
+WITH TopdiezProductos AS (
+    SELECT TOP 10 P.ProductID, P.ProductName, SUM(OD.Quantity) AS TotalQuantity
+    FROM [Order Details] OD
+    LEFT JOIN Products P ON OD.ProductID = P.ProductID
+    GROUP BY P.ProductID, P.ProductName
+    ORDER BY TotalQuantity DESC
+)
+SELECT *
+FROM TopdiezProductos
+;
+
+
+/*--TOP 15 mayor ventas por paises--*/
+
+SELECT top 15 ShipCountry, COUNT(OrderID) AS TotalVentas
+FROM Orders
+GROUP BY ShipCountry
+ORDER BY TotalVentas DESC
+;
+
+
+
+/*--top 10 Productos mas caros--*/
+
+SELECT top 10 ProductName, UnitPrice
+FROM Products
+ORDER BY UnitPrice DESC
+;
+
+
+
+/*--Total Ordenes y Cantidad de pedidos realizados por Pais--*/
+
+SELECT ShipCountry, COUNT(OD.OrderID) AS TotalOrders, sum(OD.Quantity) as CantidadPedida
+FROM [Orders] O 
+LEFT JOIN [Order Details] OD ON O.OrderID = OD.OrderID
+GROUP BY ShipCountry
+;
+
+
+/*--Clientes que han realizado mas de 20 pedidos--*/
+
+SELECT C.CustomerID, C.ContactName, COUNT(OD.OrderID) AS OrderCount
+FROM Customers C
+LEFT JOIN Orders O ON C.CustomerID = O.CustomerID
+LEFT JOIN [Order Details] OD ON O.OrderID = OD.OrderID 
+GROUP BY C.CustomerID, C.ContactName
+HAVING COUNT(OD.OrderID) > 20
+ORDER BY OrderCount DESC
+
+
+
+/* TOP 5 Empleados que han tenido mas pedidos */
+
+SELECT TOP 5 E.EmployeeID, E.FirstName, E.LastName, COUNT(OD.OrderID) AS OrderCount
+FROM Employees E
+LEFT JOIN [Orders] O ON E.EmployeeID = O.EmployeeID
+LEFT JOIN [Order Details] OD on  O.OrderID = OD.OrderID
+GROUP BY E.EmployeeID, E.FirstName, E.LastName
+ORDER BY OrderCount DESC;
+
+
+
+
+

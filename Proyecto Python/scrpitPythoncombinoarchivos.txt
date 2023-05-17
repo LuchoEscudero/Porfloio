@@ -1,0 +1,30 @@
+import os
+import pandas as pd
+
+# Ruta de la carpeta que contiene los archivos CSV
+folder_path = r"C:\Users\LucianoEscudero\Desktop\Archivosdatalake"
+
+# Lista para almacenar los DataFrames de los archivos CSV
+dataframes = []
+
+# Recorre todos los archivos CSV en la carpeta
+for filename in os.listdir(folder_path):
+    if filename.endswith(".csv"):
+        file_path = os.path.join(folder_path, filename)
+        date = filename.split("_")[-3:]  # Extrae la fecha del nombre del archivo
+        date = "-".join(date)  # Formatea la fecha como AAAA-MM-DD
+        
+        # Lee el archivo CSV y agrega la columna de fecha
+        df = pd.read_csv(file_path)
+        df["Fecha"] = date
+        
+        dataframes.append(df)
+
+# Combina todos los DataFrames en uno solo
+combined_df = pd.concat(dataframes, ignore_index=True)
+
+# Guarda el DataFrame combinado en un nuevo archivo CSV
+combined_csv_path = os.path.join(folder_path, "combined_data.csv")
+combined_df.to_csv(combined_csv_path, index=False)
+
+print(f"Se han combinado y guardado los archivos CSV en: {combined_csv_path}")
