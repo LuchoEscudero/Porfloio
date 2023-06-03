@@ -1,0 +1,27 @@
+nombre = input('¿Cuál es tu nombre? ')
+edad = int(input('¿Cuál es tu edad? '))
+
+print(f"Hola, ¿cómo estás {nombre}?")
+
+if nombre == "Luis":
+    if edad >= 18:
+        print("Hola Luis, ¿Como estas en este dia? Espero que disfrutes el evento")
+    else:
+        print("Hola Luis, tienes que esperar unos años mas para poder asistir, lo lamentamos mucho.")
+elif nombre == "Richard":
+    if edad >= 18:
+        print("Hola Richard, ¿Como estas en este dia? Espero que disfrutes el evento")
+    else:
+        print("Hola Richard, tienes que esperar unos años mas para poder asistir, lo lamentamos mucho.")
+elif nombre == "Jose":
+    if edad >= 18:
+        print("Hola Jose, ¿Como estas en este dia? Espero que disfrutes el evento")
+    else:
+        print("Hola Jose, tienes que esperar unos años mas para poder asistir, lo lamentamos mucho.")
+elif nombre == "Federico":
+    if edad >= 18:
+        print("Hola Federico,  ¿Como estas en este dia? Espero que disfrutes el evento.")
+    else:
+        print("Hola Federico, tienes que esperar unos años mas para poder asistir, lo lamentamos mucho.")
+else:
+    print("Lo siento, no te tenemos registrado en nuestra lista de invitados, no podras ingresar al evento.")
