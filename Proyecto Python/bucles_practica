@@ -1,0 +1,47 @@
+##Suma de números: Escribe un programa que solicite al usuario ingresar una serie de números positivos. 
+##El programa debe calcular la suma de todos los números ingresados hasta que el usuario ingrese un número negativo. 
+##Finalmente, mostrar el resultado de la suma.
+Suma_total = 0
+while True:
+    pregunta = int(input("Brindame un numero positivo: "))
+
+    if pregunta < 0:
+        print("Has ingresado un numero negativo, finalizo la suma")
+        break
+
+    Suma_total += pregunta
+
+
+print(("La suma total es : "),  Suma_total)
+
+
+
+# Adivina el numero: Escribe un programa donde el usuario 
+# tenga que adivinar un número usando bucle while
+
+numero= 10
+
+while True:
+    pregunta = int(input("Adivina el numero: "))
+    if pregunta == numero:
+        print("Has adivinado correctamente")
+        break
+
+##Contador inverso: Escribe un programa que solicite al usuario ingresar un número entero positivo.
+##El programa debe imprimir todos los números en orden descendente, desde el número ingresado hasta 0.
+
+numero = int(input("Ingresa un número entero positivo: "))
+
+while numero >= 0:
+    print(numero)
+    numero -= 1
+
+##Tabla de multiplicar: 
+##Escribe un programa que solicite al usuario ingresar un número entero 
+##y muestre la tabla de multiplicar de ese número del 1 al 10.
+
+numero = int(input("ingresa un numero entero: "))
+
+for i in range(10):
+    resultado = numero * (i +1)
+    print(numero,"x",i + 1, "=", resultado )
