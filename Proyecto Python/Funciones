@@ -1,0 +1,48 @@
+## Functions ##
+
+##Defalt_value
+
+def print_name_with_defaut (name,surname, alias = "Sin alias"):
+    print(f"{name} {surname} {alias}")
+
+print_name_with_defaut("Lionel", "Messi")
+print_name_with_defaut("Lionel", "Messi" , "La pulga")
+
+## Multiplication
+
+def num_multiplications (number1,number2):
+    print(number1 * number2)
+
+num_multiplications(5,2)
+
+##potenciations
+
+def potenciations (number1,number3):
+    print(number1**number3)
+
+potenciations(2,3)
+
+##sum_two_numbers
+
+def sum_two_numbers (firts_number,second_number):
+    print(firts_number + second_number)
+
+sum_two_numbers(8,20)
+ 
+##sum_two_lists
+
+def sum_two_lists (firts_list,second_lists):
+    print(firts_list + second_lists)
+
+sum_two_lists([1,2,3,4,5],[6,7,8,9,10])
+
+##dynamic_text_parameters
+##upper_texts
+
+def print_upper_texts (*texts):
+    for text in texts:
+         print(text.upper())
+
+print_upper_texts("Hola", "¿Como estas?")
+print_upper_texts("Hola")
+print_upper_texts("hola,bievenido, gracias")
